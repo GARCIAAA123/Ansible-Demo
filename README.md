@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project demonstrates the use of [Ansible](https://www.ansible.com/) and [Vagrant](https://www.vagrantup.com/) to automate the provisioning and configuration of virtual machines. The setup consists of a Vagrant-controlled environment with two virtual machines (VMs): an Ansible controller VM and two host VMs (a web server and a database server).
+This project demonstrates the use of Ansible and Vagrant to automate the provisioning and configuration of virtual machines (VMs). The setup includes:
 
 - **Ansible Controller VM**: Manages the Ansible playbooks.
 - **Host VMs**: Consisting of a web server and a database server.
@@ -18,9 +18,9 @@ This project demonstrates the use of [Ansible](https://www.ansible.com/) and [Va
 
 ### Prerequisites
 
-- [Vagrant](https://www.vagrantup.com/downloads) - Ensure you have Vagrant installed on your local machine.
-- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - VirtualBox is used as the provider for Vagrant.
-- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) - Installed on the Ansible controller VM.
+1. **Vagrant**: Ensure Vagrant is installed on your local machine.
+2. **VirtualBox**: Required as the provider for Vagrant.
+3. **Ansible**: Must be installed on the Ansible controller VM.
 
 ### Setup
 
@@ -77,11 +77,36 @@ This project demonstrates the use of [Ansible](https://www.ansible.com/) and [Va
 
     This playbook will install and start the Apache web server on the web server VM.
 
-## Files
+## Apache Installation on the Web Server
 
-- **ansible-controller/Vagrantfile**: Configures the Ansible controller VM. Installs Ansible and sets up provisioning.
-- **ansible-host/Vagrantfile**: Configures the web and database VMs with specified network settings and IPs.
-- **playbook.yml**: Ansible playbook for installing and starting the Apache web server on the web server VM.
+The Ansible playbook located in `playbook.yml` is responsible for installing and starting the Apache web server on the web server VM. Here's a brief overview of what the playbook does:
+
+1. **Install Apache**
+
+    The playbook uses the `yum` module to install the `httpd` package, which is the Apache HTTP server:
+
+    ```yaml
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+    ```
+
+2. **Start and Enable Apache Service**
+
+    After installing Apache, the playbook ensures that the Apache service is started and enabled to start on boot:
+
+    ```yaml
+    - name: Start and enable Apache service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    ```
+
+3. **Verify Installation**
+
+    To verify that Apache is running, you can access the web server VM using a web browser and navigate to the server's IP address. You should see the default Apache welcome page.
 
 ## Troubleshooting
 
@@ -132,37 +157,11 @@ If you encounter a `Could not retrieve mirrorlist` error, follow these steps to 
 
     Retry the `vagrant up` or `ansible-playbook` command to see if the issue is resolved.
 
+## Files
 
-## Apache Installation on the Web Server
-
-The Ansible playbook located in `playbook.yml` is responsible for installing and starting the Apache web server on the web server VM. Here's a brief overview of what the playbook does:
-
-1. **Install Apache**
-
-    The playbook uses the `yum` module to install the `httpd` package, which is the Apache HTTP server:
-
-    ```yaml
-    - name: Install Apache
-      yum:
-        name: httpd
-        state: present
-    ```
-
-2. **Start and Enable Apache Service**
-
-    After installing Apache, the playbook ensures that the Apache service is started and enabled to start on boot:
-
-    ```yaml
-    - name: Start and enable Apache service
-      service:
-        name: httpd
-        state: started
-        enabled: yes
-    ```
-
-3. **Verify Installation**
-
-    To verify that Apache is running, you can access the web server VM using a web browser and navigate to the server's IP address. You should see the default Apache welcome page.
+- **ansible-controller/Vagrantfile**: Configures the Ansible controller VM. Installs Ansible and sets up provisioning.
+- **ansible-host/Vagrantfile**: Configures the web and database VMs with specified network settings and IPs.
+- **playbook.yml**: Ansible playbook for installing and starting the Apache web server on the web server VM.
 
 ## Contributing
 
