@@ -27,45 +27,44 @@ This project demonstrates the use of [Ansible](https://www.ansible.com/) and [Va
    ```bash
    git clone https://github.com/GARCIAAA123/Ansible-Demo.git
    cd AnsibleDemo
-Provision the Vagrant VMs:
+2. **Provision the Vagrant VMs**
 
 Navigate to the ansible-controller directory and run:
 
-bash
-Copy code
-cd ansible-controller
-vagrant up
+   ```bash
+   cd ansible-controller
+   vagrant up
+
 Navigate to the ansible-host directory and run:
 
-bash
-Copy code
-cd ../ansible-host
-vagrant up
+   ```bash
+   cd ../ansible-host
+   vagrant up
+
 This will start the provisioning process for both the controller and the host VMs.
 
-Configure Ansible Inventory:
+3. **Configure Ansible Inventory**
 
 SSH into the controller VM:
 
-bash
-Copy code
-vagrant ssh ansible-controller
+   ```bash
+   vagrant ssh ansible-controller
+
 Edit or create the Ansible inventory file at /vagrant/hosts on the controller VM:
 
-ini
-Copy code
-[webservers]
-192.168.33.10
+   ```ini
+   [webservers]
+   192.168.33.10
 
-[dbservers]
-192.168.33.11
-Run the Ansible Playbook:
+   [dbservers]
+   192.168.33.11
 
+4. **Run the Ansible Playbook**
 Still on the controller VM, run the playbook:
 
-bash
-Copy code
-ansible-playbook /vagrant/playbook.yml
+   ```bash
+   ansible-playbook /vagrant/playbook.yml
+
 This playbook will install and start the Apache web server on the web server VM.
 
 Files
@@ -74,9 +73,7 @@ ansible-host/Vagrantfile: Configures the web and database VMs with specified net
 playbook.yml: Ansible playbook for installing and starting the Apache web server on the web server VM.
 Troubleshooting
 Could not retrieve mirrorlist error: This error usually indicates a network issue or a problem with the CentOS repositories. Ensure that the VMs have network access and that the repositories are reachable.
-
 Authentication issues with GitHub: GitHub no longer supports password authentication for Git operations. Use a Personal Access Token (PAT) or SSH keys for authentication.
-
 Contributing
 Feel free to open an issue or submit a pull request if you have improvements or suggestions for this project.
 
@@ -87,12 +84,5 @@ Acknowledgements
 Ansible Documentation
 Vagrant Documentation
 VirtualBox Documentation
-rust
-Copy code
 
-This version of the `README.md` provides more detailed information about the project setup, usage, and troubleshooting. It also includes sections for contributing and acknowledgements, which can be helpful for open-source projects or collaborative work. Adjust the sections as needed to fit your specific project requirements.
-
-
-
-
-
+This format maintains a consistent structure for each step in the setup process.
