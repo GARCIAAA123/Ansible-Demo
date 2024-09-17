@@ -85,8 +85,53 @@ This project demonstrates the use of [Ansible](https://www.ansible.com/) and [Va
 
 ## Troubleshooting
 
-- **Could not retrieve mirrorlist error**: Indicates a network issue or a problem with the CentOS repositories. Ensure that the VMs have network access and that the repositories are reachable.
-- **Authentication issues with GitHub**: GitHub no longer supports password authentication for Git operations. Use a Personal Access Token (PAT) or SSH keys for authentication.
+### Fixing `baseurl` Issues
+
+If you encounter a `Could not retrieve mirrorlist` error, follow these steps to resolve it:
+
+1. **SSH into the Problematic VM**
+
+    ```bash
+    vagrant ssh [vm-name]
+    ```
+
+    Replace `[vm-name]` with the name of the VM where you are experiencing the issue (e.g., `ansible-controller`, `webserver`, or `dbserver`).
+
+2. **Edit the Repository Configuration File**
+
+    For CentOS-based systems, this file is typically located at `/etc/yum.repos.d/CentOS-Base.repo`. Open it with a text editor:
+
+    ```bash
+    sudo vi /etc/yum.repos.d/CentOS-Base.repo
+    ```
+
+3. **Update the `baseurl`**
+
+    Look for lines starting with `baseurl=` under the repository sections (e.g., `[base]`, `[updates]`). Update these lines to use a valid base URL. You can find updated URLs from CentOS mirror sites or repositories.
+
+    Example:
+
+    ```ini
+    baseurl=http://mirror.centos.org/centos/7/os/x86_64/
+    ```
+
+4. **Save and Exit**
+
+    Save the changes and exit the editor (`:wq` in `vi`).
+
+5. **Clean the YUM Cache**
+
+    Run the following command to clean up and refresh the repository metadata:
+
+    ```bash
+    sudo yum clean all
+    sudo yum update
+    ```
+
+6. **Retry the Provisioning**
+
+    Retry the `vagrant up` or `ansible-playbook` command to see if the issue is resolved.
+
 
 ## Contributing
 
