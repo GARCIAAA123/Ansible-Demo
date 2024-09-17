@@ -133,6 +133,37 @@ If you encounter a `Could not retrieve mirrorlist` error, follow these steps to 
     Retry the `vagrant up` or `ansible-playbook` command to see if the issue is resolved.
 
 
+## Apache Installation on the Web Server
+
+The Ansible playbook located in `playbook.yml` is responsible for installing and starting the Apache web server on the web server VM. Here's a brief overview of what the playbook does:
+
+1. **Install Apache**
+
+    The playbook uses the `yum` module to install the `httpd` package, which is the Apache HTTP server:
+
+    ```yaml
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+    ```
+
+2. **Start and Enable Apache Service**
+
+    After installing Apache, the playbook ensures that the Apache service is started and enabled to start on boot:
+
+    ```yaml
+    - name: Start and enable Apache service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    ```
+
+3. **Verify Installation**
+
+    To verify that Apache is running, you can access the web server VM using a web browser and navigate to the server's IP address. You should see the default Apache welcome page.
+
 ## Contributing
 
 Feel free to open an issue or submit a pull request if you have improvements or suggestions for this project.
@@ -143,6 +174,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-Ansible Documentation
-Vagrant Documentation
-VirtualBox Documentation
+- Ansible Documentation
+- Vagrant Documentation
+- VirtualBox Documentation
