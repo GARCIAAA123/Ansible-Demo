@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project demonstrates the use of Ansible and Vagrant to automate the provisioning and configuration of virtual machines (VMs). The setup includes:
+This project demonstrates the use of [Ansible](https://www.ansible.com/) and [Vagrant](https://www.vagrantup.com/) to automate the provisioning and configuration of virtual machines (VMs). The setup consists of a Vagrant-controlled environment with two virtual machines (VMs): an Ansible controller VM and two host VMs (a web server and a database server).
 
 - **Ansible Controller VM**: Manages the Ansible playbooks.
 - **Host VMs**: Consisting of a web server and a database server.
@@ -18,9 +18,9 @@ This project demonstrates the use of Ansible and Vagrant to automate the provisi
 
 ### Prerequisites
 
-1. **Vagrant**: Ensure Vagrant is installed on your local machine.
-2. **VirtualBox**: Required as the provider for Vagrant.
-3. **Ansible**: Must be installed on the Ansible controller VM.
+- [Vagrant](https://www.vagrantup.com/downloads) - Ensure you have Vagrant installed on your local machine.
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - VirtualBox is used as the provider for Vagrant.
+- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) - Installed on the Ansible controller VM.
 
 ### Setup
 
@@ -173,6 +173,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-- Ansible Documentation
-- Vagrant Documentation
-- VirtualBox Documentation
+- [Ansible Documentation](https://docs.ansible.com/)
+- [Vagrant Documentation](https://developer.hashicorp.com/vagrant/docs)
+- [VirtualBox Documentation](https://forum.virtualbox.org/wiki/Documentation)
+- [Apache Documentation](https://httpd.apache.org/docs/)
